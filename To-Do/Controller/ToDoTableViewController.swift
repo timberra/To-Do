@@ -30,14 +30,12 @@ class ToDoTableViewController: UITableViewController {
                 editingIndexPath = indexPath
                 let alertController = UIAlertController(title: "Edit Task", message: "Edit the task title", preferredStyle: .alert)
                 alertController.addTextField { textFieldValue in
-                    textFieldValue.placeholder = "Your updated title here.."
                     let toDoList = self.toDoLists[indexPath.row]
                     textFieldValue.text = toDoList.item
                 }
                 alertController.addTextField { subtextFieldValue in
-                    subtextFieldValue.placeholder = "Your updated subtitle here.."
                     let toDoList = self.toDoLists[indexPath.row]
-                    subtextFieldValue.text = toDoList.item
+                    subtextFieldValue.text = toDoList.subitem
                 }
                 let editActionButton = UIAlertAction(title: "Save", style: .default) { _ in
                     if let textField = alertController.textFields?.first,
