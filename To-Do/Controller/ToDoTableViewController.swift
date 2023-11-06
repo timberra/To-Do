@@ -51,6 +51,7 @@ class ToDoTableViewController: UITableViewController {
             let list = NSManagedObject(entity: entity!, insertInto: self.managedObjectContext)
             
             list.setValue(textField?.text, forKey: "item")
+            list.setValue(Date(), forKey: "time")
             self.saveCoreData()
         }
         
@@ -77,7 +78,7 @@ class ToDoTableViewController: UITableViewController {
         if sender.state == UIGestureRecognizer.State.began {
             let touchPath = sender.location(in: tableView)
             if let indexPath = tableView.indexPathForRow(at: touchPath){
-                let currentDate = dateFormatter.string(from: Date())
+                let currentDate = dateFormatter.string(from: toDoLists[indexPath.row].time!)
                 print(indexPath)
                 basicActionSheet(title: toDoLists[indexPath.row].item, message: "Created: \(currentDate)")
             }
